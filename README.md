@@ -1,4 +1,4 @@
-# TuShare golang version
+# TuShare restful api golang version
 ![](https://travis-ci.org/ShawnRong/tushare-go.svg?branch=master)
 [![codecov](https://codecov.io/gh/ShawnRong/tushare-go/branch/master/graph/badge.svg)](https://codecov.io/gh/ShawnRong/tushare-go)
 

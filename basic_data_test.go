@@ -31,7 +31,7 @@ func TestStockBasic(t *testing.T) {
 	resp, err := client.StockBasic(params, fields)
 
 	if err != nil {
-		t.Errorf("Api should not return an error, got %s", err)
+		t.Errorf("Api should not return an error, got: %s", err)
 	}
 	if resp == nil {
 		t.Errorf("Api should return data")
@@ -43,7 +43,7 @@ func TestInvalidField(t *testing.T) {
 	params := make(map[string]string)
 	var fields []string
 	fields = append(fields, "invalid_field")
-	resp , err := client.StockBasic(params, fields)
+	resp, err := client.StockBasic(params, fields)
 
 	if err != nil {
 		if resp.Code == -2001 {
@@ -62,7 +62,7 @@ func TestTradeCal(t *testing.T) {
 	resp, err := client.TradeCal(params, fields)
 
 	if err != nil {
-		t.Errorf("Api should not return an error, got %s", err)
+		t.Errorf("Api should not return an error, got: %s", err)
 	}
 
 	if resp == nil {
@@ -78,7 +78,7 @@ func TestHSConst(t *testing.T) {
 	resp, err := client.HSConst(params, fields)
 
 	if err != nil {
-		t.Errorf("Api should not return an error, got %s", err)
+		t.Errorf("Api should not return an error, got: %s", err)
 	}
 	if resp == nil {
 		t.Errorf("Api should return data")
@@ -104,7 +104,7 @@ func TestNameChange(t *testing.T) {
 	resp, err := client.NameChange(params, fields)
 
 	if err != nil {
-		t.Errorf("Api should not return an error, got %s", err)
+		t.Errorf("Api should not return an error, got: %s", err)
 	}
 	if resp == nil {
 		t.Errorf("Api should return data")
@@ -145,4 +145,3 @@ func TestNewShare(t *testing.T) {
 		t.Errorf("Api should return data")
 	}
 }
-

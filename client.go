@@ -23,12 +23,12 @@ func New(token string) *TuShare {
 
 func NewWithClient(token string, httpClient *http.Client) *TuShare {
 	return &TuShare{
-		token: token,
+		token:  token,
 		client: httpClient,
 	}
 }
 
-func (api *TuShare)request(method, path string, body interface{})(*http.Request, error) {
+func (api *TuShare) request(method, path string, body interface{}) (*http.Request, error) {
 	bodyJson, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
@@ -40,7 +40,7 @@ func (api *TuShare)request(method, path string, body interface{})(*http.Request,
 	return req, nil
 }
 
-func (api *TuShare)doRequest(req *http.Request) (*ApiResponse, error){
+func (api *TuShare) doRequest(req *http.Request) (*ApiResponse, error) {
 	// Set http content type
 	req.Header.Set("Content-Type", "application/json")
 
@@ -93,3 +93,14 @@ func (api *TuShare)doRequest(req *http.Request) (*ApiResponse, error){
 	return jsonData, nil
 }
 
+func (api *TuShare) postData(body map[string]interface{}) (*ApiResponse, error) {
+	req, err := api.request("POST", API_URL, body)
+	if err != nil {
+		return nil, err
+	}
+	resp, err := api.doRequest(req)
+	if err != nil {
+		return resp, err
+	}
+	return resp, nil
+}

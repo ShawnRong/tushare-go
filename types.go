@@ -5,8 +5,7 @@ type ApiResponse struct {
 	Code      int         `json:"code"`
 	Msg       interface{} `json:"msg"`
 	Data      struct {
-		Fields []string   `json:"fields"`
+		Fields []string        `json:"fields"`
 		Items  [][]interface{} `json:"items"`
 	} `json:"data"`
 }
-
