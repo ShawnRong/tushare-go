@@ -9,6 +9,7 @@ import (
 	"net/http"
 )
 
+// API endpoint
 const API_URL = "http://api.tushare.pro"
 
 type TuShare struct {
@@ -45,6 +46,11 @@ func (api *TuShare)doRequest(req *http.Request) (*ApiResponse, error){
 
 	// Execute request
 	resp, err := api.client.Do(req)
+	//Handle network error
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("Oops! Network error.")
+	}
+
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +68,7 @@ func (api *TuShare)doRequest(req *http.Request) (*ApiResponse, error){
 		return nil, err
 	}
 	if mimeType != "application/json" {
-		return nil, fmt.Errorf("Could not execute request #5! (%s)", fmt.Sprintf("Response Content-Type is '%s', but should be 'application/json'.", mimeType))
+		return nil, fmt.Errorf("Could not execute request (%s)", fmt.Sprintf("Response Content-Type is '%s', but should be 'application/json'.", mimeType))
 	}
 
 	// Parse Request
@@ -73,7 +79,16 @@ func (api *TuShare)doRequest(req *http.Request) (*ApiResponse, error){
 		return nil, err
 	}
 
-	// TODO: handle API exception
+	// @TODO: handle API exception
+	// Argument required
+	if jsonData.Code == -2001 {
+		return jsonData, fmt.Errorf("Argument error: %s", jsonData.Msg)
+	}
+
+	// Permission deny
+	if jsonData.Code == -2002 {
+		return jsonData, fmt.Errorf("Your point is not enough to use this api")
+	}
 
 	return jsonData, nil
 }

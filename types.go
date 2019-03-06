@@ -6,7 +6,7 @@ type ApiResponse struct {
 	Msg       interface{} `json:"msg"`
 	Data      struct {
 		Fields []string   `json:"fields"`
-		Items  [][]string `json:"items"`
+		Items  [][]interface{} `json:"items"`
 	} `json:"data"`
 }
 
