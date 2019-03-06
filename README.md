@@ -1,4 +1,8 @@
 # TuShare golang version
+![](https://travis-ci.org/ShawnRong/tushare-go.svg?branch=master)
+[![codecov](https://codecov.io/gh/ShawnRong/tushare-go/branch/master/graph/badge.svg)](https://codecov.io/gh/ShawnRong/tushare-go)
+
+
 基于[tushare api](https://tushare.pro/document/2)的golang版本。
 ## 使用方法：
 ```go

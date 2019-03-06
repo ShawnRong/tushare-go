@@ -1,14 +1,18 @@
+sudo: false
+
 language: go
+
+# Force-enable Go modules. This will be unnecessary when Go 1.12 lands.
+env:
+  - GO111MODULE=on
 
 go:
   - 1.11.x
   - tip
 
-before_install:
-  - go get -t -v ./...
-
 script:
-  - go test -race -coverprofile=coverage.txt -covermode=atomic
+  - go test -v -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
