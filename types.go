@@ -1,6 +1,7 @@
-package TuShare
+package tushare
 
-type ApiResponse struct {
+// APIResponse tushare api response
+type APIResponse struct {
 	RequestID string      `json:"request_id"`
 	Code      int         `json:"code"`
 	Msg       interface{} `json:"msg"`

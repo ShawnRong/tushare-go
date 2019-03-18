@@ -1,10 +1,11 @@
-package TuShare
+package tushare
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var token = ""
@@ -91,7 +92,7 @@ func TestHSConstParamsRequired(t *testing.T) {
 	var fields []string
 	_, err := client.HSConst(params, fields)
 	if err != nil {
-		ast.Equal(err.Error(), "hs_type required!")
+		ast.Equal(err.Error(), "hs_type required")
 	}
 }
 

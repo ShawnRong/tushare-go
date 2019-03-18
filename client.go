@@ -1,4 +1,4 @@
-package TuShare
+package tushare
 
 import (
 	"bytes"
@@ -9,18 +9,21 @@ import (
 	"net/http"
 )
 
-// API endpoint
-const API_URL = "http://api.tushare.pro"
+// Endpoint URL
+const Endpoint = "http://api.tushare.pro"
 
+// TuShare instance
 type TuShare struct {
 	token  string
 	client *http.Client
 }
 
+// New TuShare default client
 func New(token string) *TuShare {
 	return NewWithClient(token, http.DefaultClient)
 }
 
+// NewWithClient TuShare client with arguments
 func NewWithClient(token string, httpClient *http.Client) *TuShare {
 	return &TuShare{
 		token:  token,
@@ -29,18 +32,18 @@ func NewWithClient(token string, httpClient *http.Client) *TuShare {
 }
 
 func (api *TuShare) request(method, path string, body interface{}) (*http.Request, error) {
-	bodyJson, err := json.Marshal(body)
+	bodyJSON, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest(method, path, bytes.NewBuffer(bodyJson))
+	req, err := http.NewRequest(method, path, bytes.NewBuffer(bodyJSON))
 	if err != nil {
 		return nil, err
 	}
 	return req, nil
 }
 
-func (api *TuShare) doRequest(req *http.Request) (*ApiResponse, error) {
+func (api *TuShare) doRequest(req *http.Request) (*APIResponse, error) {
 	// Set http content type
 	req.Header.Set("Content-Type", "application/json")
 
@@ -48,7 +51,7 @@ func (api *TuShare) doRequest(req *http.Request) (*ApiResponse, error) {
 	resp, err := api.client.Do(req)
 	//Handle network error
 	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("Oops! Network error.")
+		return nil, fmt.Errorf("oops! Network error")
 	}
 
 	if err != nil {
@@ -72,7 +75,7 @@ func (api *TuShare) doRequest(req *http.Request) (*ApiResponse, error) {
 	}
 
 	// Parse Request
-	var jsonData *ApiResponse
+	var jsonData *APIResponse
 
 	err = json.Unmarshal(body, &jsonData)
 	if err != nil {
@@ -93,8 +96,8 @@ func (api *TuShare) doRequest(req *http.Request) (*ApiResponse, error) {
 	return jsonData, nil
 }
 
-func (api *TuShare) postData(body map[string]interface{}) (*ApiResponse, error) {
-	req, err := api.request("POST", API_URL, body)
+func (api *TuShare) postData(body map[string]interface{}) (*APIResponse, error) {
+	req, err := api.request("POST", Endpoint, body)
 	if err != nil {
 		return nil, err
 	}

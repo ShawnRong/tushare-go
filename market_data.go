@@ -1,9 +1,9 @@
-package TuShare
+package tushare
 
 import "fmt"
 
-// 获取股票行情数据, 日线行情
-func (api *TuShare) Daily(params map[string]string, fields []string) (*ApiResponse, error) {
+// Daily 获取股票行情数据, 日线行情
+func (api *TuShare) Daily(params map[string]string, fields []string) (*APIResponse, error) {
 	// Check params
 	_, hasTsCode := params["ts_code"]
 	_, hasTradeDate := params["trade_date"]
@@ -14,7 +14,7 @@ func (api *TuShare) Daily(params map[string]string, fields []string) (*ApiRespon
 	}
 
 	if dateFormat := IsDateFormat(params["trade_date"], params["start_date"], params["end_date"]); !dateFormat {
-		return nil, fmt.Errorf("Please input right date format YYYYMMDD!")
+		return nil, fmt.Errorf("please input right date format YYYYMMDD")
 	}
 
 	body := map[string]interface{}{
@@ -27,8 +27,8 @@ func (api *TuShare) Daily(params map[string]string, fields []string) (*ApiRespon
 	return api.postData(body)
 }
 
-// 获取股票行情数据, 周线行情
-func (api *TuShare) Weekly(params map[string]string, fields []string) (*ApiResponse, error) {
+// Weekly 获取股票行情数据, 周线行情
+func (api *TuShare) Weekly(params map[string]string, fields []string) (*APIResponse, error) {
 	// Check params
 	_, hasTsCode := params["ts_code"]
 	_, hasTradeDate := params["trade_date"]
@@ -39,7 +39,7 @@ func (api *TuShare) Weekly(params map[string]string, fields []string) (*ApiRespo
 	}
 
 	if dateFormat := IsDateFormat(params["trade_date"], params["start_date"], params["end_date"]); !dateFormat {
-		return nil, fmt.Errorf("Please input right date format YYYYMMDD!")
+		return nil, fmt.Errorf("please input right date format YYYYMMDD")
 	}
 
 	body := map[string]interface{}{
@@ -52,8 +52,8 @@ func (api *TuShare) Weekly(params map[string]string, fields []string) (*ApiRespo
 	return api.postData(body)
 }
 
-// 获取A股月线数据
-func (api *TuShare) Monthly(params map[string]string, fields []string) (*ApiResponse, error) {
+// Monthly 获取A股月线数据
+func (api *TuShare) Monthly(params map[string]string, fields []string) (*APIResponse, error) {
 	// Check params
 	_, hasTsCode := params["ts_code"]
 	_, hasTradeDate := params["trade_date"]
@@ -64,7 +64,7 @@ func (api *TuShare) Monthly(params map[string]string, fields []string) (*ApiResp
 	}
 
 	if dateFormat := IsDateFormat(params["trade_date"], params["start_date"], params["end_date"]); !dateFormat {
-		return nil, fmt.Errorf("Please input right date format YYYYMMDD!")
+		return nil, fmt.Errorf("please input right date format YYYYMMDD")
 	}
 
 	body := map[string]interface{}{
@@ -77,8 +77,8 @@ func (api *TuShare) Monthly(params map[string]string, fields []string) (*ApiResp
 	return api.postData(body)
 }
 
-// 获取全部股票每日重要的基本面指标，可用于选股分析、报表展示等
-func (api *TuShare) DailyBasic(params map[string]string, fields []string) (*ApiResponse, error) {
+// DailyBasic 获取全部股票每日重要的基本面指标，可用于选股分析、报表展示等
+func (api *TuShare) DailyBasic(params map[string]string, fields []string) (*APIResponse, error) {
 	// Check params
 	_, hasTsCode := params["ts_code"]
 	_, hasTradeDate := params["trade_date"]
@@ -89,7 +89,7 @@ func (api *TuShare) DailyBasic(params map[string]string, fields []string) (*ApiR
 	}
 
 	if dateFormat := IsDateFormat(params["trade_date"], params["start_date"], params["end_date"]); !dateFormat {
-		return nil, fmt.Errorf("Please input right date format YYYYMMDD!")
+		return nil, fmt.Errorf("please input right date format YYYYMMDD")
 	}
 
 	body := map[string]interface{}{
@@ -102,8 +102,8 @@ func (api *TuShare) DailyBasic(params map[string]string, fields []string) (*ApiR
 	return api.postData(body)
 }
 
-// 获取股票复权因子，可提取单只股票全部历史复权因子，也可以提取单日全部股票的复权因子
-func (api *TuShare) AdjFactor(params map[string]string, fields []string) (*ApiResponse, error) {
+// AdjFactor 获取股票复权因子，可提取单只股票全部历史复权因子，也可以提取单日全部股票的复权因子
+func (api *TuShare) AdjFactor(params map[string]string, fields []string) (*APIResponse, error) {
 	// Check params
 	_, hasTsCode := params["ts_code"]
 	_, hasTradeDate := params["trade_date"]
@@ -114,7 +114,7 @@ func (api *TuShare) AdjFactor(params map[string]string, fields []string) (*ApiRe
 	}
 
 	if dateFormat := IsDateFormat(params["trade_date"], params["start_date"], params["end_date"]); !dateFormat {
-		return nil, fmt.Errorf("Please input right date format YYYYMMDD!")
+		return nil, fmt.Errorf("please input right date format YYYYMMDD")
 	}
 
 	body := map[string]interface{}{
@@ -127,8 +127,8 @@ func (api *TuShare) AdjFactor(params map[string]string, fields []string) (*ApiRe
 	return api.postData(body)
 }
 
-// 获取股票每日停复牌信息
-func (api *TuShare) Suspend(params map[string]string, fields []string) (*ApiResponse, error) {
+// Suspend 获取股票每日停复牌信息
+func (api *TuShare) Suspend(params map[string]string, fields []string) (*APIResponse, error) {
 	// Check params
 	_, hasTsCode := params["ts_code"]
 	_, hasTradeDate := params["suspend_date"]
@@ -151,7 +151,7 @@ func (api *TuShare) Suspend(params map[string]string, fields []string) (*ApiResp
 	}
 
 	if dateFormat := IsDateFormat(params["suspend_date"], params["resume_date"]); !dateFormat {
-		return nil, fmt.Errorf("Please input right date format YYYYMMDD!")
+		return nil, fmt.Errorf("please input right date format YYYYMMDD")
 	}
 
 	body := map[string]interface{}{

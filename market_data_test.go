@@ -1,8 +1,9 @@
-package TuShare
+package tushare
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestDaily(t *testing.T) {
@@ -34,7 +35,7 @@ func TestDailyInvalidDateArgs(t *testing.T) {
 	_, err := client.Daily(params, fields)
 
 	if err != nil {
-		ast.Equal(err.Error(), "Please input right date format YYYYMMDD!")
+		ast.Equal(err.Error(), "please input right date format YYYYMMDD")
 	}
 }
 
@@ -67,7 +68,7 @@ func TestWeeklyInvalidDateArgs(t *testing.T) {
 	_, err := client.Weekly(params, fields)
 
 	if err != nil {
-		ast.Equal(err.Error(), "Please input right date format YYYYMMDD!")
+		ast.Equal(err.Error(), "please input right date format YYYYMMDD")
 	}
 }
 
@@ -100,7 +101,7 @@ func TestMonthlyInvalidDateArgs(t *testing.T) {
 	_, err := client.Monthly(params, fields)
 
 	if err != nil {
-		ast.Equal(err.Error(), "Please input right date format YYYYMMDD!")
+		ast.Equal(err.Error(), "please input right date format YYYYMMDD")
 	}
 }
 
@@ -135,7 +136,7 @@ func TestDailyBasicInvalidDateArgs(t *testing.T) {
 	_, err := client.DailyBasic(params, fields)
 
 	if err != nil {
-		ast.Equal(err.Error(), "Please input right date format YYYYMMDD!")
+		ast.Equal(err.Error(), "please input right date format YYYYMMDD")
 	}
 }
 
@@ -168,7 +169,7 @@ func TestAdjFactorInvalidDateArgs(t *testing.T) {
 	_, err := client.AdjFactor(params, fields)
 
 	if err != nil {
-		ast.Equal(err.Error(), "Please input right date format YYYYMMDD!")
+		ast.Equal(err.Error(), "please input right date format YYYYMMDD")
 	}
 }
 
@@ -204,6 +205,6 @@ func TestSuspendInvalidDateArgs(t *testing.T) {
 	_, err := client.Suspend(params, fields)
 
 	if err != nil {
-		ast.Equal(err.Error(), "Please input right date format YYYYMMDD!")
+		ast.Equal(err.Error(), "please input right date format YYYYMMDD")
 	}
 }

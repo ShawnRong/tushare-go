@@ -6,7 +6,7 @@
 基于[tushare api](https://tushare.pro/document/2)的golang版本。
 ## 使用方法：
 ```go
-	c := TuShare.New("你的token")
+	c := tushare.New("你的token")
 	// 参数
 	params := make(map[string]string)
 	// 字段
@@ -15,4 +15,4 @@
 	data, _ := c.StockBasic(params, fields)	
 ```
 
-具体参数接口请查看[TuShare API](https://tushare.pro/document/2)文档
+具体参数接口请查看[tushare API](https://tushare.pro/document/2)文档

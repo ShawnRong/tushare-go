@@ -1,10 +1,10 @@
-package TuShare
+package tushare
 
 import (
 	"regexp"
 )
 
-// Check date format YYYYMMDD
+// IsDateFormat Check date format YYYYMMDD
 func IsDateFormat(dates ...string) bool {
 	re := regexp.MustCompile(`^\d{4}\d{2}\d{2}$`)
 	for _, date := range dates {
