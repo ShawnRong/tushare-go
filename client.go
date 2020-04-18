@@ -49,15 +49,15 @@ func (api *TuShare) doRequest(req *http.Request) (*APIResponse, error) {
 
 	// Execute request
 	resp, err := api.client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
 	//Handle network error
 	if resp.StatusCode != 200 {
 		return nil, fmt.Errorf("oops! Network error")
 	}
 
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
 
 	// Read request
 	body, err := ioutil.ReadAll(resp.Body)
